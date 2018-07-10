@@ -2,6 +2,7 @@ let http=require("http");
 let path=require("path");
 let fs=require("fs");
 let mime = require('mime'); 
+let querystring=require('querystring');
 // console.log(__dirname);//e:\ahmsp\hm\b11Node.js\d2\03
 let rootPath=path.join(__dirname,"www");
 // console.log(rootPath);//e:\ahmsp\hm\b11Node.js\d2\03\www
@@ -15,7 +16,7 @@ http.createServer(function (request,response) {
     // if(houUrl=="/"){houUrl="/index.html"}
     // let filePath=path.join(rootPath,houUrl);//拼接到存储这些文件的目录后
 
-    let filePath=path.join(rootPath,request.url);//拼接到存储这些文件的目录后的文件的绝对路径
+    let filePath=path.join(rootPath,querystring.unescape(request.url));//拼接到存储这些文件的目录后的文件的绝对路径
     console.log(filePath);
 
     let isExist=fs.existsSync(filePath);//判断路径是否存在
